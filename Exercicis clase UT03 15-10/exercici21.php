@@ -29,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $resultado = (1/3) * pi() * pow($radio, 2) * $altura;
 
-
     echo "El resultado es: " . round($resultado, 2);
 }
 ?>
