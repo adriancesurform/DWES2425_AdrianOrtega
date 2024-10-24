@@ -1,84 +1,90 @@
 <?php
 
-class Producto {
-    private $nombreProducto;
-    private $infoProducto;
-    private $precioProducto;
-    private $categoriaProducto;
+class Producte {
 
-    public function __construct($nombreProducto, $infoProducto, $precioProducto, Categoria $categoriaProducto)
+    private $nom;
+    private $descripcio;
+    private $preu;
+
+    public function __construct($nom, $descripcio, $preu)
     {
-        $this->nombreProducto = $nombreProducto;
-        $this->infoProducto = $infoProducto;
-        $this->precioProducto = $precioProducto;
-        $this->categoriaProducto = $categoriaProducto;
+        $this->nom = $nom;
+        $this->descripcio = $descripcio;
+        $this->preu = $preu;
     }
 
-    public function getNombreProducto() {
-        return $this->nombreProducto;
+    public function getNom()
+    {
+        return $this->nom;
     }
 
-    public function getInfoProducto() {
-        return $this->infoProducto;
+    public function getDescripcio()
+    {
+        return $this->descripcio;
     }
 
-    public function getPrecioProducto() {
-        return $this->precioProducto;
-    }
-
-    public function getCategoriaProducto() {
-        return $this->categoriaProducto;
-    }
-
-    public function muestraInfo() {
-        return "{$this->getNombreProducto()} - {$this->getInfoProducto()} - {$this->getPrecioProducto()}€ - Categoría: {$this->getCategoriaProducto()->getNombreCategoria()}";
+    public function getPreu()
+    {
+        return $this->preu;
     }
 }
 
 class Categoria {
-    private $nombreCategoria;
-    private $infoCategoria;
 
-    public function __construct($nombreCategoria, $infoCategoria) {
-        $this->nombreCategoria = $nombreCategoria;
-        $this->infoCategoria = $infoCategoria;
-    }
-
-    public function getNombreCategoria() {
-        return $this->nombreCategoria;
-    }
-
-    public function getInfoCategoria() {
-        return $this->infoCategoria;
-    }
+    private $categoria;
+    private $descripcio;
 
 
-
-}
-
-function crearProducto($nombreProducto, $infoProducto, $precioProducto, $categoriaProducto) {
-    return new Producto($nombreProducto, $infoProducto, $precioProducto, $categoriaProducto);
-}
-
-function crearCategoria($nombreProducto, $infoProducto) {
-    return new Categoria($nombreProducto, $infoProducto);
-}
-
-function obtenirProductosPorCategoria(Categoria $categoriaProducto) {
-}
-
-function mostrarProductos(array $productos) {
-    foreach ($productos as $producto) {
-        echo $producto->muestraInfo() . "<br>";
+    public function __construct($categoria, $descripcio)
+    {
+        $this->categoria = $categoria;
+        $this->descripcio = $descripcio;
 
     }
+    public function getNom()
+    {
+        return $this->categoria;
+    }
+
+    public function getDescripcio(){
+        return $this->descripcio;
+    }
+
 }
 
-function mostrarCategorias(array $categorias): void
+function crearProducte($nom, $descripcio, $preu) {
+    return new Producte($nom, $descripcio, $preu);
+}
+
+function crearCategoria($nom, $descripcio) {
+    return new Categoria($nom, $descripcio);
+
+}
+
+function agregarCategoriaAProducte(Producte $producte, Categoria $categoria) {
+
+}
+
+function obtenirProductsPorCategoria(Categoria $categoria) {
+
+    //...
+
+}
+
+function mostrarProductes(array $productes)
 {
-    foreach ($categorias as $categoria) {
-    $categoriaNombre = htmlspecialchars($categoria->getNombreCategoria());
-        echo '<label for="' . $categoriaNombre . '"><input type="radio" id="' . $categoriaNombre . '" name="categoriaProducto" value="' . $categoriaNombre . '" required>' . " " . $categoriaNombre . '</label><br>';
+    foreach ($productes as $producte) {
+        // Para acceder a las propiedades privadas, necesitarías métodos getter en la clase Producte
+        echo 'Nombre: ' . $producte->getNom(). '<br>';
+        echo 'Descripción: ' . $producte->getDescripcio() . '<br>';
+        echo 'Precio: ' . number_format($producte->getPreu(), 2) . ' €<br><br>';
     }
 }
 
+function mostrarCategories(array $categories)
+{
+foreach ($categories as $categoria) {
+    echo 'Nombre: ' . $categoria->getNom(). '<br>';
+    echo 'Descripcio: ' . $categoria->getDescripcio() . '<br><br>';
+}
+}
