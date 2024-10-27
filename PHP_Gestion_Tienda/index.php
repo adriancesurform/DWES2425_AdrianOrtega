@@ -16,6 +16,12 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
 <body>
 
 <div class="container">
+
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Cargando todo lo necesario...</div>
+    </div>
+
     <h1>Tienda de Ropa</h1>
 
     <?php
@@ -63,7 +69,9 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
     $buscarProducto = "Cami"; // Modificar el valor según la busqueda que queramos hacer.
     mostrarProductes($buscarProducto); // Filtra y muestra productos que contienen la palabra "Pan"
     ?>
-</div>
 
+
+</div>
+<script src="script.js"></script>
 </body>
 </html>
