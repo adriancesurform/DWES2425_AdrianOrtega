@@ -26,7 +26,8 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
 
     // Crear los productos
     $producte1 = crearProducte('Camiseta', 'Camiseta de algodón', 19.99); // Crea un producto: Camiseta
-    $producte2 = crearProducte('Pantalones', 'Pantalones vaqueros', 39.99); // Crea un producto: Pantalones
+    $producte2 = crearProducte('Pantalones', 'Pantalones vaqueros', 39.99);
+    $producte3 = crearProducte('Camiseta de tirantes', 'Con logo Nike estampado', 24.80); // Crea un producto: Pantalones
 
     // Crear las categorías
     $categoria1 = crearCategoria('Roba', 'Secció de roba'); // Crea una categoría: Roba
@@ -35,6 +36,7 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
     // Agregar los productos a la sesión
     $_SESSION['productes'][] = $producte1; // Añade el producto Camiseta a la sesión
     $_SESSION['productes'][] = $producte2; // Añade el producto Pantalones a la sesión
+    $_SESSION['productes'][] = $producte3; // Añade el producto Pantalones a la sesión
     $_SESSION['categories'][] = $categoria1; // Añade la categoría Roba a la sesión
     $_SESSION['categories'][] = $categoria2; // Añade la categoría Home a la sesión
 
@@ -42,6 +44,7 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
     agregarCategoriaAProducte($producte1, $categoria1); // Asocia la categoría Roba con la camiseta
     agregarCategoriaAProducte($producte1, $categoria2); // Asocia la categoría Home con la camiseta
     agregarCategoriaAProducte($producte2, $categoria2); // Asocia la categoría Home con los pantalones
+    agregarCategoriaAProducte($producte3, $categoria1); // Asocia la categoría Home con los pantalones
 
     // Muestra la información de los productos y categorías actuales de la sesión.
     echo '<h2>Productos Disponibles</h2>';

@@ -19,10 +19,24 @@ class Producte {
      * @param float $preu Precio del producto
      */
     public function __construct($nom, $descripcio, $preu) {
+        // Validar que el nombre no esté vacío
+        if (empty($nom)) {
+            throw new InvalidArgumentException("El nombre del producto no puede estar vacío.");
+        }
+        // Validar que la descripción no esté vacía
+        if (empty($descripcio)) {
+            throw new InvalidArgumentException("La descripción del producto no puede estar vacía.");
+        }
+        // Validar que el precio sea un número y no sea negativo
+        if (!is_numeric($preu) || $preu < 0) {
+            throw new InvalidArgumentException("El precio debe ser un número positivo.");
+        }
+
+        // Inicializar las variables.
         $this->nom = $nom;
         $this->descripcio = $descripcio;
         $this->preu = $preu;
-        $this->categories = []; // Inicializa la lista de categorías como vacía
+        $this->categories = [];
     }
 
     /**
@@ -85,6 +99,15 @@ class Categoria {
      * @param string $descripcio Descripción de la categoría
      */
     public function __construct($categoria, $descripcio) {
+        // Validar que la categoría no esté vacía
+        if (empty($categoria)) {
+            throw new InvalidArgumentException("El nombre de la categoría no puede estar vacío.");
+        }
+        // Validar que la descripción no esté vacía
+        if (empty($descripcio)) {
+            throw new InvalidArgumentException("La descripción de la categoría no puede estar vacía.");
+        }
+
         $this->categoria = $categoria;
         $this->descripcio = $descripcio;
     }
@@ -117,7 +140,11 @@ class Categoria {
  * @return Producte Objeto de la clase Producte
  */
 function crearProducte($nom, $descripcio, $preu) {
-    return new Producte($nom, $descripcio, $preu);
+    try {
+        return new Producte($nom, $descripcio, $preu);
+    } catch (InvalidArgumentException $e) {
+        echo "Error al crear el producto: " . $e->getMessage() . "<br>";
+    }
 }
 
 /**
@@ -128,8 +155,11 @@ function crearProducte($nom, $descripcio, $preu) {
  * @return Categoria Objeto de la clase Categoria
  */
 function crearCategoria($nom, $descripcio) {
-    return new Categoria($nom, $descripcio);
-}
+    try {
+        return new Categoria($nom, $descripcio);
+    } catch (InvalidArgumentException $e) {
+        echo "Error al crear la categoría: " . $e->getMessage() . "<br>";
+    }}
 
 /**
  * Agrega una categoría a un producto existente.
@@ -138,8 +168,11 @@ function crearCategoria($nom, $descripcio) {
  * @param Categoria $categoria Objeto de la clase Categoria
  */
 function agregarCategoriaAProducte(Producte $producte, Categoria $categoria) {
-    $producte->addCategoria($categoria); // Llama al método para añadir la categoría
-}
+    try {
+        $producte->addCategoria($categoria); // Llama al metodo para añadir la categoría
+    } catch (Exception $e) {
+        echo "Error al agregar la categoría al producto: " . $e->getMessage() . "<br>";
+    }}
 
 /**
  * Obtiene los productos que pertenecen a una categoría específica.
@@ -147,6 +180,11 @@ function agregarCategoriaAProducte(Producte $producte, Categoria $categoria) {
  * @param Categoria $categoriaBuscada Objeto de la clase Categoria que se busca
  */
 function obtenirProductsPorCategoria(Categoria $categoriaBuscada) {
+    if (!isset($_SESSION['productes'])) {
+        echo "No hay productos en la sesión.<br>";
+        return; // Si no hay productos, termina la función
+    }
+
     $productesPorCategoria = []; // Inicializa un array para almacenar los productos filtrados
 
     // Filtra productos por la categoría buscada
@@ -161,20 +199,24 @@ function obtenirProductsPorCategoria(Categoria $categoriaBuscada) {
     }
 
     // Muestra los productos en la categoría buscada
-    echo "Productos en la categoría \"<b>" . $categoriaBuscada->getNom() ."</b>\":<br><br>";
-    foreach ($productesPorCategoria as $producte) {
-        echo "<li>Nom: " . $producte->getNom() . "</li>";
-        echo "<li>Descripció: " . $producte->getDescripcio() . "</li>";
-        echo "<li>Preu: " . $producte->getPreu() . "</li>";
+    if (empty($productesPorCategoria)) {
+        echo "No se encontraron productos en la categoría \"<b>" . $categoriaBuscada->getNom() ."</b>\".<br>";
+    } else {
+        echo "Productos en la categoría \"<b>" . $categoriaBuscada->getNom() ."</b>\":<br><br>";
+        foreach ($productesPorCategoria as $producte) {
+            echo "<li>Nom: " . $producte->getNom() . "</li>";
+            echo "<li>Descripció: " . $producte->getDescripcio() . "</li>";
+            echo "<li>Preu: " . $producte->getPreu() . "</li>";
 
-        // Mostrar categorías del producto
-        echo "<li>Categorías: ";
-        $nombresCategorias = []; // Inicializa un array para los nombres de las categorías
-        foreach ($producte->getCategories() as $categoriaDelProducto) {
-            $nombresCategorias[] = $categoriaDelProducto->getNom(); // Añade el nombre de la categoría
+            // Mostrar categorías del producto
+            echo "<li>Categorías: ";
+            $nombresCategorias = []; // Inicializa un array para los nombres de las categorías
+            foreach ($producte->getCategories() as $categoriaDelProducto) {
+                $nombresCategorias[] = $categoriaDelProducto->getNom(); // Añade el nombre de la categoría
+            }
+
+            echo implode(", ", $nombresCategorias) . ". </li><br><br>"; // Muestra las categorías como una lista
         }
-
-        echo implode(", ", $nombresCategorias) . ". </li><br><br>"; // Muestra las categorías como una lista
     }
 }
 
@@ -195,10 +237,13 @@ function mostrarProductes($filtro = null) {
             }
         }
         // Muestra productos filtrados
-        echo 'Productes similars a: <b>' . $filtro . '</b><br><br>';
-        $productes = $productosFiltrados; // Usa solo los productos filtrados
-        foreach ($productes as $producte) {
-            echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '</li>';
+        if (empty($productosFiltrados)) {
+            echo "No se encontraron productos similares a: <b>" . htmlspecialchars($filtro) . "</b><br>";
+        } else {
+            echo 'Productes similars a: <b>' . htmlspecialchars($filtro) . '</b><br><br>';
+            foreach ($productosFiltrados as $producte) {
+                echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '</li>';
+            }
         }
     } else {
         // Muestra todos los productos si no hay filtro
@@ -216,9 +261,14 @@ function mostrarProductes($filtro = null) {
  * @param array $categories Lista de objetos de la clase Categoria
  */
 function mostrarCategories(array $categories) {
+    if (empty($categories)) {
+        echo '<b>No hay categorías disponibles.</b><br>';
+        return; // Si no hay categorías, termina la función
+    }
+
     echo '<b>Categories:</b><br><br>';
     foreach ($categories as $categoria) {
-        echo '<li>' . $categoria->getNom() . '</li>'; // Muestra el nombre de cada categoría
+        echo '<li>' . htmlspecialchars($categoria->getNom()) . '</li>'; // Muestra el nombre de cada categoría
     }
     echo '<br>';
 }
