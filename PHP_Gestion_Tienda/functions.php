@@ -163,9 +163,9 @@ function obtenirProductsPorCategoria(Categoria $categoriaBuscada) {
     // Muestra los productos en la categoría buscada
     echo "Productos en la categoría \"<b>" . $categoriaBuscada->getNom() ."</b>\":<br><br>";
     foreach ($productesPorCategoria as $producte) {
-        echo "<li>Nom: " . $producte->getNom() . "<br>";
-        echo "<li>Descripció: " . $producte->getDescripcio() . "<br>";
-        echo "<li>Preu: " . $producte->getPreu() . "<br>";
+        echo "<li>Nom: " . $producte->getNom() . "</li>";
+        echo "<li>Descripció: " . $producte->getDescripcio() . "</li>";
+        echo "<li>Preu: " . $producte->getPreu() . "</li>";
 
         // Mostrar categorías del producto
         echo "<li>Categorías: ";
@@ -174,7 +174,7 @@ function obtenirProductsPorCategoria(Categoria $categoriaBuscada) {
             $nombresCategorias[] = $categoriaDelProducto->getNom(); // Añade el nombre de la categoría
         }
 
-        echo implode(", ", $nombresCategorias) . ".<br><br>"; // Muestra las categorías como una lista
+        echo implode(", ", $nombresCategorias) . ". </li><br><br>"; // Muestra las categorías como una lista
     }
 }
 
@@ -198,13 +198,13 @@ function mostrarProductes($filtro = null) {
         echo 'Productes similars a: <b>' . $filtro . '</b><br><br>';
         $productes = $productosFiltrados; // Usa solo los productos filtrados
         foreach ($productes as $producte) {
-            echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '<br>';
+            echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '</li>';
         }
     } else {
         // Muestra todos los productos si no hay filtro
-        echo '<b>Productes:</b><br><br>';
+        echo '<b>Productes:</b><br>';
         foreach ($productes as $producte) {
-            echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '<br>';
+            echo '<li>' . $producte->getNom() . ": " . $producte->getDescripcio() . ", " . $producte->getPreu() . '</li>';
         }
         echo '<br>';
     }
@@ -218,7 +218,7 @@ function mostrarProductes($filtro = null) {
 function mostrarCategories(array $categories) {
     echo '<b>Categories:</b><br><br>';
     foreach ($categories as $categoria) {
-        echo '<li>' . $categoria->getNom() . '<br>'; // Muestra el nombre de cada categoría
+        echo '<li>' . $categoria->getNom() . '</li>'; // Muestra el nombre de cada categoría
     }
     echo '<br>';
 }
