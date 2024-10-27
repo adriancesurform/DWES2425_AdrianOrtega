@@ -5,12 +5,14 @@ class Producte {
     private $nom;
     private $descripcio;
     private $preu;
+    private $categories;
 
     public function __construct($nom, $descripcio, $preu)
     {
         $this->nom = $nom;
         $this->descripcio = $descripcio;
         $this->preu = $preu;
+        $this->categories = [];
     }
 
     public function getNom()
@@ -26,6 +28,14 @@ class Producte {
     public function getPreu()
     {
         return $this->preu;
+    }
+
+    public function getCategories() {
+        return $this->categories;
+    }
+
+    public function addCategoria(Categoria $categoria) {
+        $this->categories[] = $categoria;
     }
 }
 
@@ -62,29 +72,62 @@ function crearCategoria($nom, $descripcio) {
 }
 
 function agregarCategoriaAProducte(Producte $producte, Categoria $categoria) {
-
+    $producte->addCategoria($categoria);
 }
 
-function obtenirProductsPorCategoria(Categoria $categoria) {
+function obtenirProductsPorCategoria(Categoria $categoriaBuscada) {
+    $productesPorCategoria = [];
 
-    //...
+    foreach ($_SESSION['productes'] as $producte) {
+        foreach ($producte->getCategories() as $categoria) {
+            if ($categoria->getNom() === $categoriaBuscada->getNom()) {
+                $productesPorCategoria[] = $producte;
+                break;
+            }
+        }
+    }
 
-}
+    // Formatear la salida según lo solicitado
+    echo "<br>Productos en la categoría: " . $categoriaBuscada->getNom() . "<br><br>";
 
-function mostrarProductes(array $productes)
-{
-    foreach ($productes as $producte) {
-        // Para acceder a las propiedades privadas, necesitarías métodos getter en la clase Producte
-        echo 'Nombre: ' . $producte->getNom(). '<br>';
-        echo 'Descripción: ' . $producte->getDescripcio() . '<br>';
-        echo 'Precio: ' . number_format($producte->getPreu(), 2) . ' €<br><br>';
+    foreach ($productesPorCategoria as $producte) {
+        $precioFormateado = number_format($producte->getPreu(), 2, '.', '.') . ' €'; // Formateo del precio
+        echo "Nombre: " . $producte->getNom() . "<br>";
+        echo "Descripción: " . $producte->getDescripcio() . "<br>";
+        echo "Precio: " . $precioFormateado . "<br>";
+
+        // Mostrar categorías del producto
+        echo "Categorías: ";
+        $categoriasDelProducto = $producte->getCategories();
+        $nombresCategorias = [];
+
+        foreach ($categoriasDelProducto as $categoriaDelProducto) {
+            $nombresCategorias[] = $categoriaDelProducto->getNom();
+        }
+
+        echo implode(", ", $nombresCategorias) . ".<br><br>"; // Unir nombres con coma y agregar un punto final
     }
 }
 
-function mostrarCategories(array $categories)
-{
-foreach ($categories as $categoria) {
-    echo 'Nombre: ' . $categoria->getNom(). '<br>';
-    echo 'Descripcio: ' . $categoria->getDescripcio() . '<br><br>';
+
+
+
+function mostrarProductes(array $productes) {
+    echo 'PRODUCTES: ' . '<br><br>';
+    foreach ($productes as $producte) {
+        $precioFormateado = number_format($producte->getPreu(), 2, '.', '.') . ' €';
+        echo '<li>' . $producte->getNom() . ': ' . $producte->getDescripcio() . ', ' . $precioFormateado . "<br>";
+    }
+        echo '<br>';
 }
+
+
+
+
+function mostrarCategories(array $categories) {
+    echo 'CATEGORIES: ' . '<br><br>';
+    foreach ($categories as $categoria) {
+        echo '<li>' . $categoria->getNom();
+    }
+    echo '<br>';
 }
