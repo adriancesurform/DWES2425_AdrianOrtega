@@ -22,5 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Redirigir a la pàgina principal
     header("Location: index.php");
+
 }
 ?>
