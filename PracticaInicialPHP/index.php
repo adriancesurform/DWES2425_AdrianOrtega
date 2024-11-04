@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +26,9 @@
         <th>Estat</th>
     </tr>
     </thead>
+    <tbody>
+    <?php include 'showTasks.php'; ?>
+    </tbody>
 </table>
 
 </body>
