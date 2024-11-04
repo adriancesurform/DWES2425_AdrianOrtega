@@ -19,7 +19,7 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
 
     <div id="loading" class="loading">
         <div class="spinner"></div>
-        <div class="loading-text">Cargando todo lo necesario...</div>
+        <div class="loading-text">Cargando todo el contenido...</div>
     </div>
 
     <h1>Tienda de Ropa</h1>
@@ -28,7 +28,6 @@ unset($_SESSION['productes'], $_SESSION['categories']); // Limpiamos la sesión 
 
     $_SESSION['productes'] = []; // Inicializa la sesión para productos como un array vacío
     $_SESSION['categories'] = []; // Inicializa la sesión para categorías como un array vacío
-    $_SESSION['productosRopa'] = []; // Inicializa la sesión para productos de ropa como un array vacío
 
     // Crear los productos
     $producte1 = crearProducte('Camiseta', 'Camiseta de algodón', 19.99); // Crea un producto: Camiseta
