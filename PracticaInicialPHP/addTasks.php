@@ -1,4 +1,5 @@
 <?php
+session_start(); // Inicia la sesión al comienzo del script
 global $conn;
 include 'dbConnect.php';
 
@@ -11,11 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("s", $task);
 
     if ($stmt->execute()) {
-        echo "Tasca afegida amb èxit!";
+        $_SESSION['message'] = "Tasca afegida amb èxit!";
     } else {
-        echo "Error: " . $stmt->error;
+        $_SESSION['message'] = "Error: " . $stmt->error;
     }
-
 
     $stmt->close();
     $conn->close();
@@ -24,4 +24,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: index.php");
     exit();
 }
-
+?>

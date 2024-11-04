@@ -18,6 +18,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "<tr><td colspan='2'>No hi ha tasques.</td></tr>";
 }
-
-$conn->close();
-
+?>
