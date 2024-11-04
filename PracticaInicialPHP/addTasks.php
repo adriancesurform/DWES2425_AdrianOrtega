@@ -16,11 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Error: " . $stmt->error;
     }
 
+
     $stmt->close();
     $conn->close();
 
     // Redirigir a la pàgina principal
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
-?>
+
