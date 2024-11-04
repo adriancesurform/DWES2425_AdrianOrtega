@@ -1,7 +1,3 @@
-<?php
-session_start(); // Asegúrate de que la sesión esté iniciada
-?>
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -13,16 +9,6 @@ session_start(); // Asegúrate de que la sesión esté iniciada
 <body>
 
 <h1>To-Do List</h1>
-
-<!-- Mostrar mensaje de sesión si existe -->
-<?php if (isset($_SESSION['message'])): ?>
-    <div class="message">
-        <?php
-        echo $_SESSION['message'];
-        unset($_SESSION['message']); // Limpiar el mensaje después de mostrarlo
-        ?>
-    </div>
-<?php endif; ?>
 
 <!-- Formulari per afegir noves tasques -->
 <form action="addTasks.php" method="POST">
