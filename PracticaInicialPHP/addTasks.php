@@ -1,5 +1,5 @@
 <?php
-session_start(); // Inicia la sesión al comienzo del script
+session_start();
 global $conn;
 include 'dbConnect.php';
 
@@ -22,6 +22,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Redirigir a la pàgina principal
     header("Location: index.php");
-    exit();
 }
 ?>
