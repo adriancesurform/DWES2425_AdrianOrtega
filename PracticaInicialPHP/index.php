@@ -10,14 +10,23 @@
 
 <h1>To-Do List</h1>
 
-<!-- Formulari per afegir noves tasques -->
+<!-- Mostrar mensajes de éxito o error -->
+<?php
+session_start();
+if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "</p>";
+    unset($_SESSION['message']); // Limpiar el mensaje después de mostrarlo
+}
+?>
+
+<!-- Formulario para agregar nuevas tareas -->
 <form action="addTasks.php" method="POST">
     <label for="task">Nova tasca:</label>
     <input type="text" id="task" name="task" required>
     <button type="submit">Afegir Tasca</button>
 </form>
 
-<!-- Taula per mostrar la llista de tasques -->
+<!-- Tabla para mostrar la lista de tareas -->
 <h2>Llista de Tasques</h2>
 <table>
     <thead>
