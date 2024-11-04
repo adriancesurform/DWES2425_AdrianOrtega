@@ -1,3 +1,7 @@
+<?php
+session_start(); // Asegúrate de que la sesión esté iniciada
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -10,23 +14,24 @@
 
 <h1>To-Do List</h1>
 
-<!-- Mostrar mensajes de éxito o error -->
-<?php
-session_start();
-if (isset($_SESSION['message'])) {
-    echo "<p>" . $_SESSION['message'] . "</p>";
-    unset($_SESSION['message']); // Limpiar el mensaje después de mostrarlo
-}
-?>
+<!-- Mostrar mensaje de sesión si existe -->
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="message">
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']); // Limpiar el mensaje después de mostrarlo
+        ?>
+    </div>
+<?php endif; ?>
 
-<!-- Formulario para agregar nuevas tareas -->
+<!-- Formulari per afegir noves tasques -->
 <form action="addTasks.php" method="POST">
     <label for="task">Nova tasca:</label>
     <input type="text" id="task" name="task" required>
     <button type="submit">Afegir Tasca</button>
 </form>
 
-<!-- Tabla para mostrar la lista de tareas -->
+<!-- Taula per mostrar la llista de tasques -->
 <h2>Llista de Tasques</h2>
 <table>
     <thead>
