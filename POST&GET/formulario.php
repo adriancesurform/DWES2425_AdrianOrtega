@@ -1,7 +1,13 @@
 <?php
 
-session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST["nom"];
+    $edat = $_POST["edat"];
+    $dni = $_POST["dni"];
 
-$name = $_POST["nom"];
-
-echo $name;
+    echo $nom;
+    echo $edat;
+    echo $dni;
+} else {
+    echo "Sind atos"
+}
