@@ -1,28 +1,27 @@
 <?php
-// Datos a enviar
-$data = [
-    'nom' => $_POST['nom'] ?? 'No proporcionado',
-    'edat' => $_POST['edat'] ?? 'No proporcionado',
-    'dni' => $_POST['dni'] ?? 'No proporcionado'
-];
+// Verificar si la solicitud es POST y si se han recibido datos
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// URL de destino
-$url = 'http://aortega.infinityfreeapp.com/POST&GET/formulario.php';
+    // Obtener los datos JSON enviados
+    $json_data = file_get_contents('php://input'); // Leer el cuerpo de la solicitud
+    $data = json_decode($json_data, true); // Decodificar el JSON a un array asociativo
 
-// Crear el contexto de POST
-$options = [
-    'http' => [
-        'method'  => 'POST',
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-        'content' => http_build_query($data),
-    ]
-];
+    // Verificamos si los datos fueron correctamente decodificados
+    if ($data) {
+        // Extraemos las variables
+        $nom = $data['nom'] ?? 'No proporcionado';
+        $edat = $data['edat'] ?? 'No proporcionado';
+        $dni = $data['dni'] ?? 'No proporcionado';
 
-$context  = stream_context_create($options);
+        // Imprimir los datos procesados
+        echo "Nombre: $nom <br>";
+        echo "Edad: $edat <br>";
+        echo "DNI: $dni <br>";
+    } else {
+        echo "Error al decodificar los datos JSON.";
+    }
 
-// Enviar la solicitud POST
-$response = file_get_contents($url, false, $context);
-
-// Mostrar la respuesta
-echo $response;
+} else {
+    echo "No se ha recibido ninguna solicitud POST.";
+}
 ?>
