@@ -2,4 +2,4 @@
 
 session_start();
 
-$name = $_POST["name"];
+$name = $_POST["nom"];
