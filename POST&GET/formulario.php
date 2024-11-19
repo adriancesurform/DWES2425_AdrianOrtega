@@ -9,5 +9,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo $edat;
     echo $dni;
 } else {
-    echo "Sind atos"
+    echo "Sin datos";
 }
