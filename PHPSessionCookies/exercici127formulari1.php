@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -8,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sexo = $_POST["selector"];
     $url = $_POST["url"];
 
-
     $_SESSION["nombre"] = $nombre;
     $_SESSION["apellidos"] = $apellidos;
     $_SESSION["email"] = $email;
@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     header("Location: exercici127formulari2.php");
+    ini_set('display_errors', 1);
     exit();
 }
 

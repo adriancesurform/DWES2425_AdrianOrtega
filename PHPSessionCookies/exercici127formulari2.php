@@ -1,11 +1,4 @@
 <?php
-session_start();
-
-$nombre = $_SESSION["nombre"];
-$apellidos = $_SESSION["apellidos"];
-$email = $_SESSION["email"];
-$sexo = $_SESSION["sexo"];
-$url = $_SESSION["url"];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $convivientes = $_POST["convivientes"];

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $nombre = $_SESSION["nombre"];
 $apellidos = $_SESSION["apellidos"];
@@ -8,8 +7,6 @@ $sexo = $_SESSION["sexo"];
 $url = $_SESSION["url"];
 $convivientes = $_SESSION["convivientes"];
 $aficion = $_SESSION["aficion"];
-
-session_destroy();
 
 ?>
 
@@ -30,8 +27,8 @@ session_destroy();
     <li><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></li>
     <li><strong>Url:</strong> <?php echo htmlspecialchars($url); ?></li>
     <li><strong>Sexo:</strong> <?php echo htmlspecialchars($sexo); ?></li>
-    <li><strong>Convivientes:</strong> <?php echo htmlspecialchars($convivientes); ?></li>
-    <li><strong>Afición:</strong> <?php echo htmlspecialchars($aficion); ?></li>
+    <li><strong>Convivientes:</strong> <?php echo ($convivientes); ?></li>
+    <li><strong>Afición:</strong> <?php echo ($aficion); ?></li>
 </ul>
 
 </body>
