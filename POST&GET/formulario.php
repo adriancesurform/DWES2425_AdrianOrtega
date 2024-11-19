@@ -1,8 +1,5 @@
 <?php
-// Verificar si la solicitud es POST y si se han recibido datos
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Obtener los datos JSON enviados
     $json_data = file_get_contents('php://input'); // Leer el cuerpo de la solicitud
     $data = json_decode($json_data, true); // Decodificar el JSON a un array asociativo
 
@@ -21,7 +18,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al decodificar los datos JSON.";
     }
 
-} else {
-    echo "No se ha recibido ninguna solicitud POST.";
-}
 ?>
