@@ -1,11 +1,15 @@
 <?php
-if (isset($_POST['nom']) && isset($_POST['dni']) && isset($_POST['edat'])) {
-    $nombre = htmlspecialchars($_POST['nom']);
-    $dni = htmlspecialchars($_POST['dni']);
-    $edad = htmlspecialchars($_POST['edat']);
+// Comprobar si se han recibido datos via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoger los datos enviados desde el formulario
+    $nom = $_POST['nom'];
+    $edat = $_POST['edat'];
+    $dni = $_POST['dni'];
 
-    echo "Nombre: " . $nombre . "<br>";
-    echo "DNI: " . $dni . "<br>";
-    echo "Edad: " . $edad . "<br>";
+    // Procesar los datos, por ejemplo, mostrar los valores
+    echo "Nombre: " . htmlspecialchars($nom) . "<br>";
+    echo "Edad: " . htmlspecialchars($edat) . "<br>";
+    echo "DNI: " . htmlspecialchars($dni) . "<br>";
 }
+?>
 
