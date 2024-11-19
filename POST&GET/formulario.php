@@ -1,5 +1,8 @@
 <?php
+var_dump($_POST);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    var_dump($_POST);
 
     $nom = $_POST['nom'] ?? 'Inválido';
     $edat = $_POST['edat'] ?? '';
