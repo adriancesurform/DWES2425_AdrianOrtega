@@ -1,12 +1,14 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom = $_POST['nom'] ?? 'No proporcionado';
+    $edat = $_POST['edat'] ?? 'No proporcionado';
+    $dni = $_POST['dni'] ?? 'No proporcionado';
 
-$nom = $_POST['nom'];
-$edat = $_POST['edat'];
-$dni = $_POST['dni'];
-
-// Imprimir los datos
-echo "Nombre: $nom <br>";
-echo "Edad: $edat <br>";
-echo "DNI: $dni <br>";
+    echo "Nombre: $nom <br>";
+    echo "Edad: $edat <br>";
+    echo "DNI: $dni <br>";
+} else {
+    echo "No se han recibido datos.";
+}
 
 
