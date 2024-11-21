@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo $info . " => " . $value . "<br>";
     }
 
-    foreach ($value as $info => $value2) {
-        echo $info . " => " . $value2 . "<br>";
+    foreach ($info as $info2 => $value) {
+        echo $info2 . " => " . $value . "<br>";
     }
 
 
