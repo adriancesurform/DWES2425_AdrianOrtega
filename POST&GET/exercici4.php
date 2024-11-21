@@ -6,8 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach ($decode as $info => $value) {
         echo $value;
-        echo "1";
-    } echo "2";
+    }
 
 } else {
     echo 'Sin datos';
