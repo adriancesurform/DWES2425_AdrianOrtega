@@ -2,7 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dades = json_decode($_POST['dades'], true);
-    $novesDades = json_decode($_POST['novesDades'], true);
+    $novesDades = json_decode($dades['novesdades'], true);
 
     echo htmlspecialchars($dades['nom']) . "<br>";
     echo htmlspecialchars($dades['edat']) . "<br>";
