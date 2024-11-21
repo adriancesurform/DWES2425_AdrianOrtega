@@ -1,8 +1,8 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $dades = htmlspecialchars($_POST['dades']);
-    echo $dades;
+    $cogerDades = json_Decode(dadesJSON);
+    echo $cogerDades;
 } else {
     echo 'Sin datos';
 }
