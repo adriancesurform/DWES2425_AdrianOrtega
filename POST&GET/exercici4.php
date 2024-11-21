@@ -5,12 +5,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $decode = json_decode($dades, true);
 
     foreach ($decode as $info => $value) {
-        echo $info . " => " . $value . "<br>";
+        foreach ($value as $k => $v) {
+            echo $v;
+        }
     }
 
-    foreach ($info as $info2 => $value) {
-        echo $info2 . " => " . $value . "<br>";
-    }
 
 
 
