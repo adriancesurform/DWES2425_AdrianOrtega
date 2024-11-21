@@ -5,13 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $edat = $_POST['edat'];
     $dni = $_POST['dni'];
 
-    $tojson = new stdClass();
-    $tojson->nombre = $nom;
-    $tojson->edat = $edat;
-    $tojson->dni = $dni;
-
-    $myJson = json_encode($tojson);
-    echo $myJson;
+    echo $nom;
+    echo $edat;
+    echo $dni;
 
 } else {
     echo 'Sin datos';
