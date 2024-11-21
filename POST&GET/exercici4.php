@@ -6,6 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach ($decode as $info => $value) {
         echo $value;
+        foreach ($value as $k => $v) {
+            echo $k;
+        }
     }
 
 } else {
