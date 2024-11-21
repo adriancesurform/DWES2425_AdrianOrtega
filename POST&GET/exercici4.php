@@ -8,10 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         foreach ($value as $k => $v) {
             echo $v;
         }
-    }
-
-
-
+        echo "1";
+    } echo "2";
 
 } else {
     echo 'Sin datos';
