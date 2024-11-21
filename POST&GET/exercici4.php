@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo htmlspecialchars($dades['edat']) . "<br>";
     echo htmlspecialchars($dades['dni']) . "<br>";
     echo "<br>";
-    echo htmlspecialchars($dades['novesdades']);
+    echo htmlspecialchars($dades['novesdades.noucamp']) . "<br>";
+    echo htmlspecialchars($dades['novesdades.nounumero']) . "<br>";
 
 } else {
     echo 'Sin datos';
