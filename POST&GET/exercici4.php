@@ -1,15 +1,14 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $dades = json_decode($_POST['dades'], true);
-    $novesDades = json_decode($dades['novesdades'], true);
+    $dades = $_POST['dades'];
+    $decode = json_decode($dades, true);
 
-    echo htmlspecialchars($dades['nom']) . "<br>";
-    echo htmlspecialchars($dades['edat']) . "<br>";
-    echo htmlspecialchars($dades['dni']) . "<br>";
-    echo "<br>";
-    echo htmlspecialchars($novesDades['noucamp']) . "<br>";
-    echo htmlspecialchars($novesDades['nounumero']) . "<br>";
+    foreach ($decode as $info => $value) {
+        echo $info . " => " . $value . "<br>";
+    }
+
+
 
 } else {
     echo 'Sin datos';
