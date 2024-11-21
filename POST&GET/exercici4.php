@@ -8,6 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo $info . " => " . $value . "<br>";
     }
 
+    foreach ($value as $info => $value2) {
+        echo $info . " => " . $value2 . "<br>";
+    }
+
 
 
 } else {
