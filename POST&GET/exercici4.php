@@ -5,9 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $decode = json_decode($dades, true);
 
     foreach ($decode as $info => $value) {
-        foreach ($value as $k => $v) {
-            echo $v;
-        }
+        echo $value;
         echo "1";
     } echo "2";
 
