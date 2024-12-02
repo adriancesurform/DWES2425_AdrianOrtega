@@ -1,0 +1,6 @@
+Ex4 form.html (voluntario).
+
+ex5 decodificar json y meter datos en bbdd. entregar captura de codigo y las evidencias de que eso
+esta en funcionamiento. explicar problemas.
+
+extra escribir archivo csv con los mismos datos. !
