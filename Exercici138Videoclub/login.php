@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $credenciales = [
         'admin' => 'admin',
-        'usuario' => 'usuario'
+        'usuario' => 'usuario',
+        'denis' => 'denis'
     ];
 
     $alquileres = [

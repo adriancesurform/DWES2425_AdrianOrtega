@@ -1,0 +1,77 @@
+:root {
+    --primary-color: #5a3e2b; /* Marrón cálido */
+    --secondary-color: #f3e8d1; /* Beige claro */
+    --accent-color: #4a7c59; /* Verde suave */
+    --border-radius: 8px;
+    --padding: 10px;
+    --margin: 10px;
+    --input-width: 60%;
+    --button-width: 30%;
+    --form-width: 320px;
+    --form-height: 420px;
+}
+
+body {
+    background-color: var(--secondary-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgb(255, 255, 255);
+    width: var(--form-width);
+    height: var(--form-height);
+    margin: 10% auto;
+    padding: var(--padding);
+}
+
+form label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--margin);
+}
+
+form input {
+    width: var(--input-width);
+    padding: var(--padding);
+    margin: var(--margin);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+form button {
+    width: var(--button-width);
+    padding: var(--padding);
+    margin: var(--margin);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--primary-color);
+}
